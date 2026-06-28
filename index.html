@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="da"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jeppes Jobagent - Idræt & Sundhed</title><style>:root{--card:#172230;--accent:#2dd4bf;--accent2:#38bdf8;--text:#e6edf3;--muted:#8aa0b3;--gold:#fbbf24;--red:#fca5a5;--line:#243446}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(160deg,#0b1118,#0f1720);color:var(--text);min-height:100vh}header{padding:28px 22px 18px;border-bottom:1px solid var(--line);background:rgba(23,34,48,.6)}h1{margin:0 0 4px;font-size:24px}.sub{color:var(--muted);font-size:14px}.wrap{max-width:1000px;margin:0 auto;padding:20px 22px 60px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 8px}.toolbar input,.toolbar select{background:var(--card);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:9px;font-size:14px}.toolbar input[type=search]{flex:1;min-width:180px}button{cursor:pointer;border:none;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06222a}button.secondary{background:var(--card);color:var(--text);border:1px solid var(--line)}button.mini{padding:5px 11px;font-size:12px;font-weight:600}label.chk{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;cursor:pointer}.meta{color:var(--muted);font-size:12.5px;margin:6px 0 16px}.job{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start;transition:.15s}.job:hover{border-color:var(--accent);transform:translateY(-1px)}.job.dimmed{opacity:.5}.score{flex:0 0 auto;width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;background:#0d1b24}.s-high{color:#06222a;background:linear-gradient(135deg,var(--accent),var(--accent2))}.s-mid{color:var(--gold);border:1px solid var(--gold)}.s-low{color:var(--muted);border:1px solid var(--line)}.job h3{margin:0 0 5px;font-size:16px}.job h3 a{color:var(--text);text-decoration:none}.job h3 a:hover{color:var(--accent)}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;align-items:center}.tag{font-size:11.5px;padding:3px 9px;border-radius:20px;background:#0d1b24;color:var(--muted);border:1px solid var(--line)}.tag.src{color:var(--accent2);border-color:#1e3a4a}.tag.frist{color:var(--gold);border-color:#3a3210}.tag.frist.soon{background:#3a1410;color:var(--red);border-color:#5a1a14}.tag.dist{color:var(--accent);border-color:#1e3a4a}.tag.home{color:#06222a;background:var(--accent)}.tag.emp{color:#7ee7d6;border-color:#1e5048}.tag.neg{color:var(--red);border-color:#5a1a14}.spacer{flex:1}.why{font-size:12.5px;color:var(--muted);margin-top:7px;font-style:italic}footer{color:var(--muted);font-size:12px;text-align:center;padding:24px;border-top:1px solid var(--line);margin-top:20px}.pill{display:inline-block;padding:2px 8px;border-radius:20px;background:#0d1b24;border:1px solid var(--line);font-size:12px;margin-left:6px}details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:14px 0;font-size:13.5px;color:var(--muted)}summary{cursor:pointer;color:var(--text);font-weight:600}code{background:#0d1b24;padding:1px 6px;border-radius:5px;color:var(--accent)}a{color:var(--accent2)}</style></head><body><header><div class="wrap" style="padding-bottom:0"><h1>Jeppes Jobagent <span class="pill">Idræt . Konsulent . Foreningsliv</span></h1><div class="sub">Personligt jobdashboard . Cand.scient. i idræt/idrætsvidenskab . Udgangspunkt: Smidstrup 7080 (kort vej vægter højt)</div></div></header><div class="wrap"><div class="toolbar"><input type="search" id="q" placeholder="Søg i titel, sted, arbejdsgiver..."><select id="src"><option value="">Alle kilder</option></select><select id="sort"><option value="score">Sorter: Relevans</option><option value="frist">Sorter: Ansøgningsfrist</option><option value="dist">Sorter: Køretid</option></select><label class="chk"><input type="checkbox" id="showHidden"> Vis skjulte</label><button id="reset" class="secondary mini">Nulstil skjul</button></div><div class="meta" id="meta"></div><div id="list"></div><details><summary>Sådan virker agenten</summary><p>Genereres af <code>jobagent.py</code>, som henter opslag fra DGI, Vejle, Fredericia, Hedensted, Kolding, Vejen, Haderslev, Horsens og Middelfart samt Jobindex (national), Kristne Friskoler, Efterskoler og Højskoler. Hvert job scores efter Jeppes profil: et <b>domæne-anker</b> (idræt/sundhed/bevægelse/outdoor/forening/fællesskab/fritid/højskole/efterskole) er påkrævet, en <b>rolle</b> (konsulent/koordinator/projekt/udvikling/leder/underviser-i-idræt) ganger op, og <b>domæne x rolle</b> giver topscore. Pleje/omsorg/SOSU/køkken og generisk lærer/pædagog uden idræt trækkes ned. Afstand fra Smidstrup vægter nærhed (kort vej = højere), hjemmearbejde tæller som tæt på, og job uden for pendlingsafstand (København, Grønland ...) sorteres helt fra. Kun fuldtid og faste stillinger vises - deltid og tidsbegrænsede (vikariat, barsel, sæson, afløser ...) filtreres fra.</p><p>Klik <b>Skjul</b> for at fjerne et job (set/ikke relevant/allerede sendt). Det huskes i browseren og kommer ikke igen - heller ikke efter ny kørsel. Sæt flueben i <b>Vis skjulte</b> for at gennemse eller fortryde.</p></details></div><footer>Genereret <span id="gen2"></span> . Kilder: DGI, Vejle, Fredericia, Hedensted, Kolding, Vejen, Haderslev, Horsens, Middelfart, Jobindex, Kristne Friskoler, Efterskoler & Højskoler . Udgangspunkt: Smidstrup 7080</footer><script>
+var JOBS = [{"_id": "efter:toemmerupefterskolelaererjuni2026", "kilde": "Efterskoler", "arbejdsgiver": "Toemmerup Efterskole", "titel": "Lærer", "sted": "", "postnr": "", "frist": "", "url": "https://www.efterskolerne.dk/for-medlemmer/ledige-jobs/sjaelland/toemmerup-efterskole-laerer-juni-2026/", "_body": "Lærer. Efterskolelærer til Re-Design & Eventlinjen samt engelsk (10. klasse) Tømmerup Efterskole – fra den 1. oktober 2026 eller tidligere", "_far": false, "_score": 2, "_dist": 999, "_home": false, "_hits": ["højskole/efterskole", "lærer"], "_domain": true, "_strong": true, "_role": true, "_empverified": true, "_ai_score": 80, "_ai_reason": "Jeppe har en relevant baggrund som idrætslaerer og kan undervise i både idræt og biologi, hvilket passer til stillingsopslaget. Han er også interesseret i at arbejde med ungdomme på efterskoler.", "_drivemin": null}];
+var GENERATED = "2026-06-28";
+var HIDDEN_KEY = "jeppes_jobagent_skjult_v2";
+
+function loadHidden(){try{return new Set(JSON.parse(localStorage.getItem(HIDDEN_KEY)||"[]"));}catch(e){return new Set();}}
+function saveHidden(s){try{localStorage.setItem(HIDDEN_KEY, JSON.stringify(Array.from(s)));}catch(e){}}
+var hidden = loadHidden();
+
+function fristInfo(f){if(!f)return{txt:"Løbende / se opslag",soon:false,sortKey:99999};var d=new Date(f);var days=Math.round((d-new Date())/86400000);return{txt:"Frist: "+d.toLocaleDateString('da-DK')+(days>=0?" ("+days+" dage)":" (udløbet)"),soon:days>=0&&days<=10,sortKey:days};}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function rankOf(j){return (j._ai_score!==undefined&&j._ai_score!==null)?j._ai_score:j._score;}
+
+function render(){
+  var q=document.getElementById('q').value.toLowerCase();
+  var src=document.getElementById('src').value;
+  var sort=document.getElementById('sort').value;
+  var showHidden=document.getElementById('showHidden').checked;
+  var arr=JOBS.filter(function(j){
+    if(!showHidden && hidden.has(j._id)) return false;
+    if(src && j.kilde!==src) return false;
+    return (j.titel+j.sted+j.arbejdsgiver).toLowerCase().indexOf(q)>=0;
+  });
+  arr.sort(function(a,b){
+    if(sort==='frist') return fristInfo(a.frist).sortKey-fristInfo(b.frist).sortKey;
+    if(sort==='dist')  return (a._drivemin==null?999:a._drivemin)-(b._drivemin==null?999:b._drivemin);
+    return rankOf(b)-rankOf(a);
+  });
+  var list=document.getElementById('list');list.innerHTML='';
+  for(var i=0;i<arr.length;i++){var j=arr[i];var fi=fristInfo(j.frist);
+    var hasAI=(j._ai_score!==undefined&&j._ai_score!==null);
+    var val=hasAI?j._ai_score:j._score;
+    var cls=hasAI?(val>=80?'s-high':val>=65?'s-mid':'s-low'):(val>=12?'s-high':val>=8?'s-mid':'s-low');
+    var isHidden=hidden.has(j._id);
+    var el=document.createElement('div');el.className='job'+(isHidden?' dimmed':'');
+    var dm=j._drivemin, distTag;
+    if(dm!==undefined&&dm!==null){
+      if(dm<48){var sp=48-dm;distTag='<span class="tag dist">'+dm+' min i bil'+(sp>=5?(' . sparer '+sp+' min'):'')+'</span>';}
+      else{distTag='<span class="tag neg">'+dm+' min . ingen tidsbesparelse</span>';}
+    } else if(j._home){distTag='<span class="tag home">hjemmearbejde</span>';}
+    else{distTag=(j._dist<900?'<span class="tag dist">~'+j._dist+' km</span>':'');}
+    var empTag = j._empverified ? '<span class="tag emp">fuldtid/fast ✓</span>' : '';
+    var extra='';
+    if(hasAI){extra='<span class="tag emp">AI-match</span>';}
+    else{for(var h=0;h<j._hits.length;h++){var hit=j._hits[h];var neg=hit.indexOf('- ')===0;
+      extra+='<span class="tag'+(neg?' neg':'')+'">'+esc(neg?hit.substring(2):hit)+'</span>';}}
+    var why=(hasAI&&j._ai_reason)?('<div class="why">'+esc(j._ai_reason)+'</div>'):'';
+    var btn = isHidden
+      ? '<button class="secondary mini" data-vis="'+esc(j._id)+'">Vis igen</button>'
+      : '<button class="secondary mini" data-skjul="'+esc(j._id)+'">Skjul</button>';
+    el.innerHTML='<div class="score '+cls+'">'+val+'</div>'+
+      '<div style="flex:1"><h3><a href="'+esc(j.url)+'" target="_blank" rel="noopener">'+esc(j.titel)+'</a></h3>'+
+      '<div style="color:var(--muted);font-size:13px">'+esc(j.arbejdsgiver)+' . '+esc(j.sted)+'</div>'+
+      '<div class="tags"><span class="tag src">'+esc(j.kilde)+'</span>'+
+      '<span class="tag frist '+(fi.soon?'soon':'')+'">'+esc(fi.txt)+'</span>'+distTag+empTag+extra+
+      '<span class="spacer"></span>'+btn+'</div>'+why+'</div>';
+    list.appendChild(el);
+  }
+  var nHidden=0;JOBS.forEach(function(j){if(hidden.has(j._id))nHidden++;});
+  document.getElementById('meta').textContent='Viser '+arr.length+' job . '+nHidden+' skjult . sorteret efter '+
+    (sort==='frist'?'frist':sort==='dist'?'afstand':'relevans');
+}
+
+document.getElementById('list').addEventListener('click',function(e){
+  var s=e.target.closest('[data-skjul]'); if(s){hidden.add(s.getAttribute('data-skjul'));saveHidden(hidden);render();return;}
+  var v=e.target.closest('[data-vis]');   if(v){hidden.delete(v.getAttribute('data-vis'));saveHidden(hidden);render();}
+});
+document.getElementById('reset').addEventListener('click',function(){
+  if(confirm('Nulstil alle skjulte job?')){hidden=new Set();saveHidden(hidden);render();}
+});
+
+var srcs=JOBS.map(function(j){return j.kilde;}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort();
+for(var i=0;i<srcs.length;i++){var o=document.createElement('option');o.value=srcs[i];o.textContent=srcs[i];document.getElementById('src').appendChild(o);}
+document.getElementById('gen2').textContent=new Date(GENERATED).toLocaleDateString('da-DK');
+['q','src','sort','showHidden'].forEach(function(id){document.getElementById(id).addEventListener('input',render);document.getElementById(id).addEventListener('change',render);});
+render();
+</script></body></html>
